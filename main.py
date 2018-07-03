@@ -2,6 +2,7 @@ import json
 
 
 def parse(text):
+    """Convert text mind map hierarchy to python data structure"""
     return {'a': ['b'], 'c': ['d']}
 
 
