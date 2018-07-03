@@ -11,16 +11,16 @@ def convert(parsed):
 
 
 def main():
-    root_node = {
+    mind_map = {
         'root': {'id': "hyfkdnca",
                  'text': 'My Mind Map',
                  'layout': 'map',
                  'children': None}}
     with open('test.txt') as f:
-        root_node['children'] = convert(parse(f.read()))
+        mind_map['children'] = convert(parse(f.read()))
 
     with open('out.mymind', 'w') as f:
-        f.write(json.dumps(root_node))
+        f.write(json.dumps(mind_map))
 
 
 if __name__ == '__main__':
