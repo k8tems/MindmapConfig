@@ -6,11 +6,6 @@ def parse(text):
     return [{'a': ['b']}, {'c': ['d']}]
 
 
-def convert(parsed):
-    """Convert mind map hierarchy to a output format"""
-    pass
-
-
 def main():
     mind_map = {
         'root': {'id': "hyfkdnca",
@@ -18,7 +13,7 @@ def main():
                  'layout': 'map',
                  'children': None}}
     with open('test.txt') as f:
-        mind_map['children'] = convert(parse(f.read()))
+        mind_map['children'] = parse(f.read())
 
     with open('out.mymind', 'w') as f:
         f.write(json.dumps(mind_map))
