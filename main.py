@@ -7,7 +7,7 @@ def main():
                  'text': 'My Mind Map',
                  'layout': 'map',
                  'children': []}}
-    with open('out.txt', 'w') as f:
+    with open('out.mymind', 'w') as f:
         f.write(json.dumps(root_node))
 
 
