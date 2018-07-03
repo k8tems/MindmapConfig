@@ -3,7 +3,7 @@ import json
 
 def main():
     root_node = {
-        'root': {'id': 0,
+        'root': {'id': "hyfkdnca",
                  'text': 'My Mind Map',
                  'layout': 'map',
                  'children': []}}
