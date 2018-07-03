@@ -1,9 +1,19 @@
 import json
 
 
+def split_indent(line):
+    num_spaces = 0
+    for l in line:
+        if l != ' ':
+            break
+        num_spaces += 1
+    return line[num_spaces:], num_spaces // 4
+
+
 def parse(text):
     """Convert text mind map hierarchy to python data structure"""
-    return [{'a': ['b']}, {'c': ['d']}]
+    for line in text.split('\n'):
+        line, indent_level = split_indent(line)
 
 
 def main():
