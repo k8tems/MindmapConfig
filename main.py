@@ -7,6 +7,7 @@ def split_indent(line):
         if l != ' ':
             break
         num_spaces += 1
+    assert(num_spaces % 4 == 0)
     return line[num_spaces:], num_spaces // 4
 
 
