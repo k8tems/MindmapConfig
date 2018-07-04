@@ -13,6 +13,10 @@ def split_indent(line):
 
 
 def search_parent_candidates(mind_map, crd, candidates=None):
+    """
+    Search the mind map exhaustively for parent node candidates
+    Every node that has 1 less indent and is above the child is considered a candidate
+    """
     candidates = candidates or []
 
     for node in mind_map:
@@ -25,6 +29,10 @@ def search_parent_candidates(mind_map, crd, candidates=None):
 
 
 def elect(candidates):
+    """
+    Select the candidate that has the highest y value
+    i.e. is closest to the child
+    """
     return max(candidates, key=lambda x: x['crd'][1]) if candidates else None
 
 
