@@ -51,14 +51,14 @@ def remove_crds(mind_map):
 
 def parse(input, mind_map):
     """Convert input data to the format that can be understood by `my-mind`"""
+    # Add coordinate information to simplify the search process
+    # Should be cleaned up with `remove_crds` prior to returning
     mind_map[0]['crd'] = (-1, -1)
     node_base = {'children': [], 'id': None, 'side': 'left', 'text': None, 'crd': None}
 
     for text, (x, y) in input:
         node = deepcopy(node_base)
         node['text'] = text
-        # Add coordinate information to simplify the search process
-        # Should be cleaned up with `remove_crds` prior to returning
         node['crd'] = (x, y)
         parent = elect(search_parent_candidates(mind_map, (x, y)))
 
