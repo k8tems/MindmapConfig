@@ -49,12 +49,11 @@ def remove_crds(mind_map):
     return mind_map
 
 
-def parse(coordinate_hierarchy):
+def parse(input, mind_map):
     """Convert input data to the format that can be understood by `my-mind`"""
-    mind_map = []
     node_base = {'children': [], 'id': None, 'side': 'left', 'text': None, 'crd': None}
 
-    for text, (x, y) in coordinate_hierarchy:
+    for text, (x, y) in input:
         node = deepcopy(node_base)
         node['text'] = text
         # Add coordinate information to simplify the search process
@@ -62,10 +61,10 @@ def parse(coordinate_hierarchy):
         node['crd'] = (x, y)
         parent = elect(search_parent_candidates(mind_map, (x, y)))
 
-        if parent:
-            parent['children'].append(node)
-        else:
-            mind_map.append(node)
+        if not parent:
+            parent = mind_map
+
+        parent['children'].append(node)
 
     return remove_crds(mind_map)
 
@@ -88,9 +87,9 @@ def main():
         'root': {'id': "hyfkdnca",
                  'text': 'My Mind Map',
                  'layout': 'map',
-                 'children': None}}
+                 'children': []}}
     with open('test.txt') as f:
-        mind_map['children'] = parse(preprocess(f.read()))
+        parse(preprocess(f.read()), [mind_map])
 
     with open('out.mymind', 'w') as f:
         f.write(json.dumps(mind_map))
