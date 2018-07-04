@@ -21,6 +21,7 @@ def search_parent_candidates(mind_map, crd, candidates=None):
     """
     Search the mind map exhaustively for parent node candidates
     Every node that has 1 less indent and is above the child is considered a candidate
+    This is obviously inefficient and unscalable but it should be OK as I'm not expecting too much data
     """
     candidates = candidates or []
 
