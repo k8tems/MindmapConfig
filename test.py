@@ -7,24 +7,35 @@ class TestCase(unittest.TestCase):
         input = [
             ('a', (0, 0)), ('b', (1, 1)),
             ('c', (0, 2)), ('d', (1, 3))]
+        root_node = {
+            'children': [],
+            'id': None,
+            'side': 'left',
+            'text': 'root'}
+        mind_map = [root_node]
         expected = [
             {'children': [{
-                'children': [],
+                'children': [{
+                    'children': [],
+                    'id': None,
+                    'side': 'left',
+                    'text': 'b'}],
                 'id': None,
                 'side': 'left',
-                'text': 'b'}],
+                'text': 'a'}, {
+                'children': [
+                    {'children': [],
+                     'id': None,
+                     'side': 'left',
+                     'text': 'd'}],
+                'id': None,
+                'side': 'left',
+                'text': 'c'}],
              'id': None,
              'side': 'left',
-             'text': 'a'},
-            {'children': [
-                {'children': [],
-                 'id': None,
-                 'side': 'left',
-                 'text': 'd'}],
-             'id': None,
-             'side': 'left',
-             'text': 'c'}]
-        self.assertEqual(expected, main.parse(input))
+             'text': 'root'}]
+
+        self.assertEqual(expected, main.parse(input, mind_map))
 
     def test_search_parent(self):
         c_node = {
