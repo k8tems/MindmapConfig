@@ -40,7 +40,7 @@ def parse(coordinate_hierarchy):
         parent = max(parent_candidates, key=lambda x: x['crd'][1]) if parent_candidates else None
 
         if parent:
-            parent['node']['children'].append(node)
+            parent['children'].append(node)
         else:
             mind_map.append(node)
 
