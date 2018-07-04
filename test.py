@@ -31,15 +31,18 @@ class TestCase(unittest.TestCase):
             'children': [],
             'id': None,
             'side': 'left',
+            'crd': (2, 2),
             'text': 'c'}
         b_node = {
             'children': [c_node],
             'id': None,
+            'crd': (1, 1),
             'side': 'left',
             'text': 'b'}
         a_node = {
             'children': [b_node],
             'id': None,
+            'crd': (0, 0),
             'side': 'left',
             'text': 'a'}
         mind_map = [a_node]
