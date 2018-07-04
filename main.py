@@ -77,7 +77,7 @@ def get_coordinate_hierarchy(indent_hierarchy):
     Convert the "indent hierarchy" to a list of tuples
     consisting of the node text and x,y position
     """
-    return [(line, (num_indent, i)) for i, (line, num_indent) in enumerate(indent_hierarchy)]
+    return [(text, (num_indent, i)) for i, (text, num_indent) in enumerate(indent_hierarchy)]
 
 
 def main():
