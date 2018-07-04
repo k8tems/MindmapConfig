@@ -23,6 +23,14 @@ def parse(text):
     return mind_map
 
 
+def get_indent_hierarchy(text):
+    """
+    Convert text mind map hierarchy to a list of tuples
+    consisting of the indent level and node text
+    """
+    return [split_indent(line) for line in text.split('\n')]
+
+
 def main():
     mind_map = {
         'root': {'id': "hyfkdnca",
@@ -30,7 +38,7 @@ def main():
                  'layout': 'map',
                  'children': None}}
     with open('test.txt') as f:
-        mind_map['children'] = parse(f.read())
+        mind_map['children'] = parse(get_indent_hierarchy(f.read()))
 
     with open('out.mymind', 'w') as f:
         f.write(json.dumps(mind_map))
