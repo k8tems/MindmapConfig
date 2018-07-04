@@ -1,5 +1,5 @@
 """
-Convert indented mindmap to the format that can understand by
+Convert indented mindmap to the format that can understood by
 https://github.com/ondras/my-mind
 """
 
