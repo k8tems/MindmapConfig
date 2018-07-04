@@ -42,6 +42,8 @@ def parse(coordinate_hierarchy):
 
         if parent:
             parent['node']['children'].append(node)
+        else:
+            mind_map.append(node)
 
     return mind_map
 
