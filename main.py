@@ -11,13 +11,15 @@ def split_indent(line):
     return line[num_spaces:], num_spaces // 4
 
 
-def search_parent(mind_map, crd, candidates=None):
+def search_parent_candidates(mind_map, crd, candidates=None):
     candidates = candidates or []
+
     for node in mind_map:
-        candidates += search_parent(node['children'], crd, candidates)
+        candidates += search_parent_candidates(node['children'], crd, candidates)
         node_x, node_y = node['crd']
         if crd[0] - node_x == 1 and node_y < crd[1]:
             candidates.append(node)
+
     return candidates
 
 
@@ -33,8 +35,13 @@ def parse(coordinate_hierarchy):
         node['text'] = text
         node['crd'] = (x, y)
         print(text, x, y)
-        parent = search_parent(mind_map, (x, y))
-        parent['node']['children'].append(node)
+        parent_candidates = search_parent_candidates(mind_map, (x, y))
+
+        from operator import itemgetter
+        parent = max(parent_candidates, key=itemgetter(1)) if parent_candidates else None
+
+        if parent:
+            parent['node']['children'].append(node)
 
     return mind_map
 
