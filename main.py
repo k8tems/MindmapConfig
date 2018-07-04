@@ -8,6 +8,7 @@ from copy import deepcopy
 
 
 def split_indent(line):
+    # TODO: raise exception if tab is found
     num_spaces = 0
     for l in line:
         if l != ' ':
