@@ -69,20 +69,18 @@ def parse(coordinate_hierarchy):
     return remove_crds(mind_map)
 
 
-def get_indent_hierarchy(text):
+def preprocess(text):
     """
     Convert text mind map hierarchy to a list of tuples
     consisting of the indent level and node text
     """
-    return [split_indent(line) for line in text.split('\n')]
+    result = []
 
+    for i, line in enumerate(text.split('\n')):
+        text, num_indent = split_indent(line)
+        result.append((text, (num_indent, i)))
 
-def get_coordinate_hierarchy(indent_hierarchy):
-    """
-    Convert the "indent hierarchy" to a list of tuples
-    consisting of the node text and x,y position
-    """
-    return [(text, (num_indent, i)) for i, (text, num_indent) in enumerate(indent_hierarchy)]
+    return result
 
 
 def main():
@@ -92,7 +90,7 @@ def main():
                  'layout': 'map',
                  'children': None}}
     with open('test.txt') as f:
-        mind_map['children'] = parse(get_coordinate_hierarchy(get_indent_hierarchy(f.read())))
+        mind_map['children'] = parse(preprocess(f.read()))
 
     with open('out.mymind', 'w') as f:
         f.write(json.dumps(mind_map))
