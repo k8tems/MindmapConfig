@@ -33,7 +33,6 @@ def parse(coordinate_hierarchy):
         node = deepcopy(node_base)
         node['text'] = text
         node['crd'] = (x, y)
-        print(text, x, y)
         parent_candidates = search_parent_candidates(mind_map, (x, y))
 
         parent = max(parent_candidates, key=lambda x: x['crd'][1]) if parent_candidates else None
