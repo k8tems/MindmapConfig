@@ -1,3 +1,8 @@
+"""
+Convert indented mindmap to the format that can understand by
+https://github.com/ondras/my-mind
+"""
+
 import json
 from copy import deepcopy
 
@@ -44,7 +49,7 @@ def remove_crds(mind_map):
 
 
 def parse(coordinate_hierarchy):
-    """Convert text mind map hierarchy to python data structure"""
+    """Convert input data to the format that can be understood by `my-mind`"""
     mind_map = []
     node_base = {'children': [], 'id': None, 'side': 'left', 'text': None, 'crd': None}
 
