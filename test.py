@@ -42,7 +42,8 @@ class TestCase(unittest.TestCase):
             'id': None,
             'side': 'left',
             'text': 'a'}
-        self.assertEqual(b_node, main.search_parent([a_node], (2, 2)))
+        mind_map = [a_node]
+        self.assertEqual(b_node, main.search_parent(mind_map, (2, 2)))
 
 
 if __name__ == '__main__':
