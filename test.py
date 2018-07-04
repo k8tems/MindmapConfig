@@ -26,6 +26,24 @@ class TestCase(unittest.TestCase):
              'text': 'c'}]
         self.assertEqual(expected, main.parse(input))
 
+    def test_search_parent(self):
+        c_node = {
+            'children': [],
+            'id': None,
+            'side': 'left',
+            'text': 'c'}
+        b_node = {
+            'children': [c_node],
+            'id': None,
+            'side': 'left',
+            'text': 'b'}
+        a_node = {
+            'children': [b_node],
+            'id': None,
+            'side': 'left',
+            'text': 'a'}
+        self.assertEqual(b_node, main.search_parent(a_node, (2, 2)))
+
 
 if __name__ == '__main__':
     unittest.main()
