@@ -28,6 +28,13 @@ def elect_candidate(candidates):
     return max(candidates, key=lambda x: x['crd'][1]) if candidates else None
 
 
+def remove_crds(mind_map):
+    for node in mind_map:
+        remove_crds(node['children'])
+        del node['crd']
+    return mind_map
+
+
 def parse(coordinate_hierarchy):
     """Convert text mind map hierarchy to python data structure"""
     mind_map = []
@@ -46,7 +53,7 @@ def parse(coordinate_hierarchy):
         else:
             mind_map.append(node)
 
-    return mind_map
+    return remove_crds(mind_map)
 
 
 def get_indent_hierarchy(text):
