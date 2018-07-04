@@ -37,8 +37,7 @@ def parse(coordinate_hierarchy):
         print(text, x, y)
         parent_candidates = search_parent_candidates(mind_map, (x, y))
 
-        from operator import itemgetter
-        parent = max(parent_candidates, key=itemgetter(1)) if parent_candidates else None
+        parent = max(parent_candidates, key=lambda x: x['crd'][1]) if parent_candidates else None
 
         if parent:
             parent['node']['children'].append(node)
