@@ -13,8 +13,14 @@ def split_indent(line):
 
 def parse(text):
     """Convert text mind map hierarchy to python data structure"""
+    mind_map = []
+    node_base = {'children': [], 'id': None, 'side': 'left', 'text': None}
     for line in text.split('\n'):
         line, num_indent = split_indent(line)
+        node = node_base.copy()
+        node['text'] = line
+        mind_map.append(node)
+    return mind_map
 
 
 def main():
