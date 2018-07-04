@@ -1,4 +1,5 @@
 import json
+from copy import deepcopy
 
 
 def split_indent(line):
@@ -29,7 +30,7 @@ def parse(coordinate_hierarchy):
     node_base = {'children': [], 'id': None, 'side': 'left', 'text': None, 'crd': None}
 
     for text, (x, y) in coordinate_hierarchy:
-        node = node_base.copy()
+        node = deepcopy(node_base)
         node['text'] = text
         node['crd'] = (x, y)
         print(text, x, y)
