@@ -27,8 +27,6 @@ def parse(coordinate_hierarchy):
     """Convert text mind map hierarchy to python data structure"""
     mind_map = []
     node_base = {'children': [], 'id': None, 'side': 'left', 'text': None, 'crd': None}
-    root_node = node_base.copy()
-    root_node['text'] = 'root'
 
     for text, (x, y) in coordinate_hierarchy:
         node = node_base.copy()
