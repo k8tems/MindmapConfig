@@ -24,6 +24,10 @@ def search_parent_candidates(mind_map, crd, candidates=None):
     return candidates
 
 
+def elect_candidate(candidates):
+    return max(candidates, key=lambda x: x['crd'][1]) if candidates else None
+
+
 def parse(coordinate_hierarchy):
     """Convert text mind map hierarchy to python data structure"""
     mind_map = []
@@ -35,7 +39,7 @@ def parse(coordinate_hierarchy):
         node['crd'] = (x, y)
         parent_candidates = search_parent_candidates(mind_map, (x, y))
 
-        parent = max(parent_candidates, key=lambda x: x['crd'][1]) if parent_candidates else None
+        parent = elect_candidate(parent_candidates)
 
         if parent:
             parent['children'].append(node)
