@@ -15,10 +15,17 @@ def parse(indent_hierarchy):
     """Convert text mind map hierarchy to python data structure"""
     mind_map = []
     node_base = {'children': [], 'id': None, 'side': 'left', 'text': None}
-    for line, num_indent in indent_hierarchy:
+    for i, (line, num_indent) in enumerate(indent_hierarchy):
+        parent = search_parent(indent_hierarchy[:i], num_indent-1)
+
         node = node_base.copy()
         node['text'] = line
-        mind_map.append(node)
+
+        if not parent:
+            mind_map.append(node)
+        else:
+            parent['children'].append(node)
+
     return mind_map
 
 
