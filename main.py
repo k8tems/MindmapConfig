@@ -43,6 +43,8 @@ def parse(coordinate_hierarchy):
     for text, (x, y) in coordinate_hierarchy:
         node = deepcopy(node_base)
         node['text'] = text
+        # Add coordinate information to simplify the search process
+        # Should be cleaned up with `remove_crds` prior to returning
         node['crd'] = (x, y)
         parent_candidates = search_parent_candidates(mind_map, (x, y))
 
