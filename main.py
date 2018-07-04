@@ -51,6 +51,7 @@ def remove_crds(mind_map):
 
 def parse(input, mind_map):
     """Convert input data to the format that can be understood by `my-mind`"""
+    mind_map[0]['crd'] = (-1, -1)
     node_base = {'children': [], 'id': None, 'side': 'left', 'text': None, 'crd': None}
 
     for text, (x, y) in input:
@@ -89,7 +90,7 @@ def main():
                  'layout': 'map',
                  'children': []}}
     with open('test.txt') as f:
-        parse(preprocess(f.read()), [mind_map])
+        parse(preprocess(f.read()), [mind_map['root']])
 
     with open('out.mymind', 'w') as f:
         f.write(json.dumps(mind_map))
