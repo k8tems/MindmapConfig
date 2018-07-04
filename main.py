@@ -15,7 +15,8 @@ def search_parent(mind_map, crd, candidates=None):
     candidates = candidates or []
     for node in mind_map:
         candidates += search_parent(node['children'], crd, candidates)
-        if node['crd'] == crd:
+        node_x, node_y = node['crd']
+        if crd[0] - node_x == 1 and crd[1] < node_y:
             candidates.append(node)
     return candidates
 
