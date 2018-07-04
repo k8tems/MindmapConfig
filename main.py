@@ -11,20 +11,20 @@ def split_indent(line):
     return line[num_spaces:], num_spaces // 4
 
 
-def parse(indent_hierarchy):
+def parse(indent_hierarchy, parents=None):
     """Convert text mind map hierarchy to python data structure"""
     mind_map = []
     node_base = {'children': [], 'id': None, 'side': 'left', 'text': None}
-    for i, (line, num_indent) in enumerate(indent_hierarchy):
-        parent = search_parent(indent_hierarchy[:i], num_indent-1)
+    root_node = node_base.copy()
+    root_node['text'] = 'root'
 
+    parents = parents or [root_node]
+
+    for i, (line, num_indent) in enumerate(indent_hierarchy):
         node = node_base.copy()
         node['text'] = line
-
-        if not parent:
-            mind_map.append(node)
-        else:
-            parent['children'].append(node)
+        parent = search_parent(parents, num_indent-1)
+        parent['node']['children'].append(node)
 
     return mind_map
 
@@ -37,6 +37,10 @@ def get_indent_hierarchy(text):
     return [split_indent(line) for line in text.split('\n')]
 
 
+def get_coordinate_hierarchy(indent_hierarchy):
+    return [(line, (num_indent, i)) for i, (line, num_indent) in enumerate(indent_hierarchy)]
+
+
 def main():
     mind_map = {
         'root': {'id': "hyfkdnca",
@@ -44,7 +48,7 @@ def main():
                  'layout': 'map',
                  'children': None}}
     with open('test.txt') as f:
-        mind_map['children'] = parse(get_indent_hierarchy(f.read()))
+        mind_map['children'] = parse(get_coordinate_hierarchy(get_indent_hierarchy(f.read())))
 
     with open('out.mymind', 'w') as f:
         f.write(json.dumps(mind_map))
