@@ -77,6 +77,8 @@ def preprocess(text):
     result = []
 
     for i, line in enumerate(text.split('\n')):
+        if not line:
+            continue
         text, num_indent = split_indent(line)
         result.append((text, (num_indent, i)))
 
