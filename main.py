@@ -24,7 +24,7 @@ def search_parent_candidates(mind_map, crd, candidates=None):
     return candidates
 
 
-def elect_candidate(candidates):
+def elect(candidates):
     return max(candidates, key=lambda x: x['crd'][1]) if candidates else None
 
 
@@ -46,9 +46,7 @@ def parse(coordinate_hierarchy):
         # Add coordinate information to simplify the search process
         # Should be cleaned up with `remove_crds` prior to returning
         node['crd'] = (x, y)
-        parent_candidates = search_parent_candidates(mind_map, (x, y))
-
-        parent = elect_candidate(parent_candidates)
+        parent = elect(search_parent_candidates(mind_map, (x, y)))
 
         if parent:
             parent['children'].append(node)
