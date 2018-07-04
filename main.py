@@ -87,7 +87,7 @@ def preprocess(text):
 
 def main():
     mind_map = {
-        'root': {'id': "hyfkdnca",
+        'root': {'id': None,
                  'text': 'My Mind Map',
                  'layout': 'map',
                  'children': []}}
