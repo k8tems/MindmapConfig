@@ -6,7 +6,7 @@ class TestCase(unittest.TestCase):
     def test_parse(self):
         input = [
             ('a', (0, 0)), ('b', (1, 1)),
-            ('c', (0, 2)), ('d', (1, 2))]
+            ('c', (0, 2)), ('d', (1, 3))]
         expected = [
             {'children': [{
                 'children': [],
