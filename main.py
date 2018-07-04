@@ -71,8 +71,7 @@ def parse(coordinate_hierarchy):
 
 def preprocess(text):
     """
-    Convert text mind map hierarchy to a list of tuples
-    consisting of the indent level and node text
+    Convert input data to a list of (node text, (x, y))
     """
     result = []
 
